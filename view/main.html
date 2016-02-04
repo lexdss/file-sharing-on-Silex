@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Загрузка файла</title>
+</head>
+<body>
+	<form action="/" method="POST" enctype="multipart/form-data">
+		<input type="hidden" name="MAX_FILE_SIZE" value="300000000">
+		<input type="file" name="upload_file">
+		<input type="submit" name="submit_upload">
+	</form>
+	{% if message is defined %}
+	<pre>{{ message }}</pre>
+	{% endif %}
+	<a href="{{ app.url_generator.generate('lastfiles') }}">Последние загрузки</a>
+</body>
+</html>

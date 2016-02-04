@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ title }}</title>
+</head>
+<body>
+	<a href="{{ app.url_generator.generate('main') }}">Главная</a>
+	{% if file.type == 'image' %}
+	<img src="/download/{{ file.id }}" width="150" alt="">
+	{% endif %}
+
+	{% if file.description is not empty %}
+		<p>{{ file.description }}</p>
+	{% endif %}
+
+	<!-- include file info template -->
+	<table border="1">
+		<tr>
+			<td>Название файла</td>
+			<td>{{ file.name }}</td>
+		</tr>
+		<tr>
+			<td>Размер</td>
+			<td>{{ file.size }}</td>
+		</tr>
+		<tr>
+			<td>Формат</td>
+			<td>{{ file.extension }}</td>
+		</tr>
+		<tr>
+			<td>Дата загрузки</td>
+			<td>{{ file.upload_date }}</td>
+		</tr>
+		{% if file.type == 'image' %}
+			{% include 'image_info.html' %}
+		{% elseif file.type == 'audio' %}
+			{% include 'audio_info.html' %}
+		{% elseif file.type == 'video' %}
+			{% include 'video_info.html' %}
+		{% endif %}
+	</table>
+	<a href="/download/{{ file.id }}">Скачать</a>
+	{% if app.request.cookies.has(file.id) %}
+		<a href="/delete/{{ file.id }}">Удалить</a>
+		<form action="/save/{{ file.id }}" method="POST">
+			<textarea name="description" cols="30" rows="10"></textarea><br>
+			<input type="submit" value="Сохранить">
+		</form>
+	{% endif %}
+</body>
+</html>

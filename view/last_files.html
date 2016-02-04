@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Last Upload Files</title>
+</head>
+<body>
+	{% if files is not empty %}
+		<table border="1">
+			{% for file in files %}
+				<tr>
+					<td><a href="/{{ file.id }}">{{ file.name }}.{{ file.extension }}</a></td>
+					<td>{{ file.size }}</td>
+					<td>{{ file.upload_date }}</td>
+					<td><a href="/download/{{ file.id }}">Download</a></td>
+				</tr>
+			{% endfor %}
+		</table>
+	{% endif %}
+	<a href="{{ app.url_generator.generate('main') }}">Главная</a>
+</body>
+</html>
