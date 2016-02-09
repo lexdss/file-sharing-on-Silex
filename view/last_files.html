@@ -2,21 +2,24 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Last Upload Files</title>
+	<link rel="stylesheet" href="/view/style.css">
+	<title>Last uploaded files</title>
 </head>
 <body>
+	<div class="link-home">
+		<a href="{{ app.url_generator.generate('main') }}">Home</a>
+	</div>
 	{% if files is not empty %}
-		<table border="1">
+		<div class="table last-file">
 			{% for file in files %}
-				<tr>
-					<td><a href="/{{ file.id }}">{{ file.name }}.{{ file.extension }}</a></td>
-					<td>{{ file.size }}</td>
-					<td>{{ file.upload_date }}</td>
-					<td><a href="/download/{{ file.id }}">Download</a></td>
-				</tr>
+				<div class="row">
+					<div class="cell name"><a href="/{{ file.id }}">{{ file.name }}.{{ file.extension }}</a></div>
+					<div class="cell size">{{ file.size }}</div>
+					<div class="cell date">{{ file.upload_date }}</div>
+					<div class="cell link"><a href="/download/{{ file.id }}">Download</a></div>
+				</div>
 			{% endfor %}
-		</table>
+		</div>
 	{% endif %}
-	<a href="{{ app.url_generator.generate('main') }}">Главная</a>
 </body>
 </html>

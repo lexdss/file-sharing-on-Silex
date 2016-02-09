@@ -1,0 +1,134 @@
+body{
+	font-family: 'Roboto', sans-serif;
+	background-color: #AFB390;
+}
+.wrap{
+	text-align: center;
+}
+.upload{
+	text-align: center;
+	margin: 200px auto 0;
+}
+input[type="file"]{
+	display: none;
+}
+input[type="submit"]{
+	background-color: #999620;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 25px;
+	padding: 9px 25px;
+	border-radius: 5px;
+	border: 0;
+	cursor: pointer;
+}
+input[type="file"] + label{
+	background-color: #2579A9;
+	text-align: center;
+	color: #DBDBDB;
+	font-size: 25px;
+	padding: 10px 25px;
+	border-radius: 5px;
+}
+input[type="file"] + label:hover{
+	background-color: #4098C4;
+	cursor: pointer;
+}
+.info{
+	background-color: #A4A38D;
+	padding: 5px 15px;
+	border-radius: 7px;
+	color: #FFFFFF;
+	font-size: 12px;
+	line-height: 3.5em;
+}
+.last_files{
+	display: inline-block;
+	margin-top: 40px;
+}
+.error{
+	display: inline-block;
+	color: #B20903;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.table{
+	display: table;
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+.row{
+	display: table-row;
+}
+.cell{
+	display: table-cell;
+	padding: 5px 20px;
+}
+.row:nth-child(2n){
+	background-color: #E5DAAE;
+}
+.link-home > a{
+	display: inline-block;
+	background-color: #999620;
+	padding: 10px 20px;
+	border-radius: 5px;
+	text-decoration: none;
+	color: #FFFFFF;
+	margin: 0 auto;
+}
+.link-home{
+	text-align: center;
+	margin-bottom: 10px;
+}
+.file-info{
+	max-width: 300px;
+}
+.file-info .cell{
+	border-bottom: 1px solid #5E5E5E;
+}
+.file-info .cell:first-child{
+	font-weight: bold;
+}
+.discription{
+	text-align: center;
+	margin-top: 15px;
+}
+.discription textarea{
+	background-color: #BFC1AA;
+	border: 1px solid #D6D8C3;
+	padding: 5px;
+	display: block;
+	margin: 15px auto;
+}
+.preview{
+	text-align: center;
+}
+.preview > img{
+	width: 250px;
+}
+.links{
+	text-align: center;
+}
+@media screen and (max-width: 810px){
+	input[type="submit"]{
+		display: block;
+		margin: 15px auto;
+	}
+	.upload{
+		margin-top: 0;
+	}
+	.date{
+		display: none;
+	}
+	.last-file{
+		margin: 0;
+	}
+}
+@media screen and (max-width: 400px){
+	.size{
+		display: none;
+	}
+	.link{
+		display: none;
+	}
+}

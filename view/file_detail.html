@@ -2,36 +2,29 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>{{ title }}</title>
+	<link rel="stylesheet" href="/view/style.css">
+	<title>{{ title }}.{{ file.extension }}</title>
 </head>
 <body>
-	<a href="{{ app.url_generator.generate('main') }}">Главная</a>
+	<div class="link-home">
+		<a href="{{ app.url_generator.generate('main') }}">Home</a>
+	</div>
 	{% if file.type == 'image' %}
-	<img src="/download/{{ file.id }}" width="150" alt="">
+		<div class="preview"><img src="/download/{{ file.id }}"></div>
 	{% endif %}
-
-	{% if file.description is not empty %}
-		<p>{{ file.description }}</p>
-	{% endif %}
-
-	<!-- include file info template -->
-	<table border="1">
-		<tr>
-			<td>Название файла</td>
-			<td>{{ file.name }}</td>
-		</tr>
-		<tr>
-			<td>Размер</td>
-			<td>{{ file.size }}</td>
-		</tr>
-		<tr>
-			<td>Формат</td>
-			<td>{{ file.extension }}</td>
-		</tr>
-		<tr>
-			<td>Дата загрузки</td>
-			<td>{{ file.upload_date }}</td>
-		</tr>
+	<div class="table file-info">
+		<div class="row">
+			<div class="cell">Name:</div>
+			<div class="cell">{{ file.name }}.{{ file.extension }}</div>
+		</div>
+		<div class="row">
+			<div class="cell">Size:</div>
+			<div class="cell">{{ file.size }}</div>
+		</div>
+		<div class="row">
+			<div class="cell">Date:</div>
+			<div class="cell">{{ file.upload_date }}</div>
+		</div>
 		{% if file.type == 'image' %}
 			{% include 'image_info.html' %}
 		{% elseif file.type == 'audio' %}
@@ -39,14 +32,23 @@
 		{% elseif file.type == 'video' %}
 			{% include 'video_info.html' %}
 		{% endif %}
-	</table>
-	<a href="/download/{{ file.id }}">Скачать</a>
+		{% if file.description is not empty %}
+			<div class="row">
+				<div class="cell">Description</div>
+				<div class="cell">{{ file.description }}</div>
+			</div>
+		{% endif %}
+	</div>
+	<div class="links"><a href="/download/{{ file.id }}">Download</a> 
 	{% if app.request.cookies.has(file.id) %}
-		<a href="/delete/{{ file.id }}">Удалить</a>
-		<form action="/save/{{ file.id }}" method="POST">
-			<textarea name="description" cols="30" rows="10"></textarea><br>
-			<input type="submit" value="Сохранить">
-		</form>
+		<a href="/delete/{{ file.id }}">Delete</a></div>
+		<div class="discription">
+			<span>Discription:</span>
+			<form action="/save/{{ file.id }}" method="POST">
+				<textarea name="description" cols="30" rows="10"></textarea>
+				<input type="submit" value="Save">
+			</form>
+		</div>
 	{% endif %}
 </body>
 </html>

@@ -1,12 +1,12 @@
-<tr>
-	<td>Длительность</td>
-	<td>{{ file.playtime }}</td>
-</tr>
-<tr>
-	<td>Битрейт</td>
-	<td>{{ file.bitrate }}kbps</td>
-</tr>
-<tr>
-	<td>Ширина Х Высота</td>
-	<td>{{ file.width }}x{{ file.height }}</td>
-</tr>
+<div class="row">
+	<div class="cell">Playtime:</div>
+	<div class="cell">{{ file.playtime }}</div>
+</div>
+<div class="row">
+	<div class="cell">Bitrate:</div>
+	<div class="cell">{{ file.bitrate }}kbps</div>
+</div>
+<div class="row">
+	<div class="cell">Format:</div>
+	<div class="cell">{{ file.width }}x{{ file.height }}</div>
+</div>

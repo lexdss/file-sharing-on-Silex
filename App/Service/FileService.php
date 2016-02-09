@@ -65,11 +65,11 @@ class FileService{
 	//Проверка на ошибки при загрузке файла
 	public function getError($uploaded_file){
 		if(!isset($uploaded_file)){
-	         $message = 'Вы не выбрали файл';
+	         $message = 'Please choose file!';
 	     }elseif($uploaded_file->getError() == 1 || $uploaded_file->getError() == 2){
-	         $message = 'Максимальный размер файла - 300 мб';
+	         $message = 'File size too large. Max size - 100 Mb';
 	     }elseif(!$uploaded_file->isValid() || $uploaded_file->getError() != 0){
-	         $message = 'Ошибка при загрузке файла';
+	         $message = 'Upload error';
 	     }
 	   return (!empty($message)) ? $message : false;
 	}
