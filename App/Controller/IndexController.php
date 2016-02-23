@@ -45,7 +45,7 @@ class IndexController{
             $file->bitrate = $this->app['file_service']->getBitrate($file_info);
         }
         //Перемещени файла и изменение расширения на txt для безопасности
-        $uploaded_file->move(UPLOAD_DIR, $file->id . '.txt');
+        $uploaded_file->move($this->app['upload_dir'], $file->id . '.txt');
         //Сохранение в БД
         $this->app['file_mapper']->save($file);
         //Сохраняются куки
@@ -72,7 +72,7 @@ class IndexController{
         if(!$file = $this->app['file_mapper']->getFile($file_id)){
             $this->app->abort(404, 'File not found');
         }
-        $file_path = UPLOAD_DIR . $file->id . '.txt';
+        $file_path = $this->app['upload_dir'] . $file->id . '.txt';
         if(!file_exists($file_path)){
             $this->app->abort(404, 'File not found');
         }
@@ -97,7 +97,7 @@ class IndexController{
     //Удаление файла
     public function delete($file_id){
         $this->app['file_mapper']->delete($file_id);
-        unlink(UPLOAD_DIR . $file_id . '.txt');
+        unlink($this->app['upload_dir'] . $file_id . '.txt');
         $response = new Response;
         $response->headers->setCookie(new Cookie($file_id, null, time() - 1));
         return $this->app->redirect('/');

@@ -9,16 +9,18 @@
 <body>
 	<div class="wrap">
 		<div class="upload">
-			<span class="error">Select file to upload</span>
+			{% if message is defined %}
+				<span class="error">{{ message }}</span>
+			{% endif %}
 			<form action="/" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="MAX_FILE_SIZE" value="300000000">
 				<input type="file" name="upload_file" id="upload_file">
-				<label for="upload_file">Select file to upload</label>
+				<label for="upload_file">Choose file to upload</label>
 				<input type="submit" name="submit_upload" value="Upload">
 			</form>
-			<span class="info">Ma file size to upload - 100 MB</span>
+			<span class="info">Max file size to upload - 100 MB</span>
 		</div>
-		<a href="" class="last_files">Last uploaded files</a>
+		<a href="{{ app.url_generator.generate('lastfiles') }}" class="last_files">Last uploaded files</a>
 	</div>
 </body>
 </html>
