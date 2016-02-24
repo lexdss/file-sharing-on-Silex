@@ -9,9 +9,6 @@ $app['debug'] = true;
 
 $app['upload_dir'] =  $_SERVER['DOCUMENT_ROOT'] . '/upload/'; //Директория для файлов загрузок
 
-$app['autoloader'] =  $app->share(function() use($loader){return $loader;});
-$app['autoloader']->add("App", '../');
-
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array('twig.path' => $_SERVER['DOCUMENT_ROOT']));
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
