@@ -1,7 +1,7 @@
 <?php
 use Symfony\Component\HttpFoundation\Request;
 
-$loader = require_once '../vendor/autoload.php';
+require_once '../vendor/autoload.php';
 $db_config = parse_ini_file('../App/db_config.ini');
 
 $app = new Silex\Application();
